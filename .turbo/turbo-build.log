@@ -1,0 +1,13 @@
+[34mglob-router:build[0m: cache hit, replaying output [2m79a29184a5ff401c[0m
+[34mglob-router:build: [0m
+[34mglob-router:build: [0m> glob-router@0.0.3 build /Users/liangzhu/Documents/work/gewu-full/packages/glob-router
+[34mglob-router:build: [0m> npm run esm && npm run cjs
+[34mglob-router:build: [0m
+[34mglob-router:build: [0m
+[34mglob-router:build: [0m> glob-router@0.0.3 esm
+[34mglob-router:build: [0m> esbuild lib/index.ts --outfile=esm/index.mjs --target=es6  --bundle --platform=node --external:./node_modules/* --external:../node_modules/* --external:../../node_modules/* --format=esm --minify
+[34mglob-router:build: [0m
+[34mglob-router:build: [0m
+[34mglob-router:build: [0m  esm/index.mjs  4.4kb
+[34mglob-router:build: [0m
+[34mglob-router:build: [0m⚡ Done in 4ms

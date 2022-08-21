@@ -1,0 +1,34 @@
+{
+  "name": "glob-router",
+  "version": "0.0.3",
+  "main": "lib/index.ts",
+  "types": "lib/index.ts",
+  "exports": {
+    "import": "./esm/index.mjs",
+    "require": "./cjs/index.js"
+  },
+  "private": false,
+  "scripts": {
+    "esm": "esbuild lib/index.ts --outfile=esm/index.mjs --target=es6  --bundle --platform=node --external:./node_modules/* --external:../node_modules/* --external:../../node_modules/* --format=esm --minify",
+    "cjs": "esbuild lib/index.ts --outdir=cjs --target=es6  --bundle --platform=node  --external:./node_modules/* --external:../node_modules/* --external:../../node_modules/* --format=cjs --minify",
+    "build": "npm run esm && npm run cjs"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/react": "^18.0.10",
+    "react": "^18.1.0"
+  },
+  "bin": "bin.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymzuiku/glob-router.git"
+  },
+  "bugs": {
+    "url": "git+https://github.com/ymzuiku/glob-router.git"
+  },
+  "homepage": "git+https://github.com/ymzuiku/glob-router.git",
+  "dependencies": {
+    "fast-glob": "^3.2.11",
+    "fs-extra": "^10.1.0"
+  }
+}
