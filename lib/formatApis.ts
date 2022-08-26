@@ -11,10 +11,17 @@ export async function formatApis(input: string, files: string[]) {
   let code = "";
   let importCodes = "";
   for (const file of files) {
-    const pathUrl = file.replace(input, "").replace("/+serve.ts", "");
-    const importUrl = file.replace(input, ".").replace(".tsx", "").replace(".ts", "");
+    const pathUrl = file
+      .replace(input, "")
+      .replace("/+serve.tsx", "")
+      .replace("/+serve.ts", "");
+    const importUrl = file
+      .replace(input, ".")
+      .replace(".tsx", "")
+      .replace(".ts", "");
     let name = file
       .replace(input + "/", "")
+      .replace("/+serve.tsx", "")
       .replace("/+serve.ts", "")
       .split("/")
       .join("_");

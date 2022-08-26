@@ -1,6 +1,6 @@
 {
   "name": "glob-router",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "main": "lib/index.ts",
   "types": "lib/index.ts",
   "exports": {
@@ -9,9 +9,9 @@
   },
   "private": false,
   "scripts": {
-    "esm": "esbuild lib/index.ts --outfile=esm/index.mjs --target=es6  --bundle --platform=node --external:./node_modules/* --external:../node_modules/* --external:../../node_modules/* --format=esm --minify",
-    "cjs": "esbuild lib/index.ts --outdir=cjs --target=es6  --bundle --platform=node  --external:./node_modules/* --external:../node_modules/* --external:../../node_modules/* --format=cjs --minify",
-    "build": "npm run esm && npm run cjs"
+    "esm": "esbuild lib/index.ts --outfile=esm/index.mjs --target=es6  --bundle --platform=node --external:fast-glob --external:fs-extra --format=esm --minify",
+    "cjs": "esbuild lib/index.ts --outdir=cjs --target=es6  --bundle --platform=node --external:fast-glob --external:fs-extra --format=cjs --minify",
+    "build": "node build.js"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
