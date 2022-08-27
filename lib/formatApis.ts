@@ -42,35 +42,35 @@ export async function formatApis(input: string, files: string[]) {
     if (hasGet.test(text)) {
       get = `
     GET: ((args: any) => {
-      return options.fetcher(options.baseUrl + "${pathUrl}", "GET", args);
+      return apiOptions.fetcher(apiOptions.baseUrl + "${pathUrl}", "GET", args);
     }) as any as typeof ${name}.GET,
       `;
     }
     if (hasDELETE.test(text)) {
       del = `
     DELETE: ((args: any) => {
-      return options.fetcher(options.baseUrl + "${pathUrl}", "DELETE", args);
+      return apiOptions.fetcher(apiOptions.baseUrl + "${pathUrl}", "DELETE", args);
     }) as any as typeof ${name}.DELETE,
       `;
     }
     if (hasPOST.test(text)) {
       post = `
     POST: ((args: any) => {
-      return options.fetcher(options.baseUrl + "${pathUrl}", "POST", args);
+      return apiOptions.fetcher(apiOptions.baseUrl + "${pathUrl}", "POST", args);
     }) as any as typeof ${name}.POST,
       `;
     }
     if (hasPUT.test(text)) {
       put = `
     PUT: ((args: any) => {
-      return options.fetcher(options.baseUrl + "${pathUrl}", "PUT", args);
+      return apiOptions.fetcher(apiOptions.baseUrl + "${pathUrl}", "PUT", args);
     }) as any as typeof ${name}.PUT,
       `;
     }
     if (hasPATCH.test(text)) {
       patch = `
     PATCH: ((args: any) => {
-      return options.fetcher(options.baseUrl + "${pathUrl}", "PATCH", args);
+      return apiOptions.fetcher(apiOptions.baseUrl + "${pathUrl}", "PATCH", args);
     }) as any as typeof ${name}.PATCH,
       `;
     }
@@ -85,16 +85,33 @@ export async function formatApis(input: string, files: string[]) {
 /* eslint-disable */
 
 ${importCodes}
-export const options = {
+export const apiOptions = {
   fetcher: (url: string, method: string, body: any) => {
     if (typeof window == "undefined") {
       return null;
     }
     if (method === "GET") {
-      return fetch(url + "?" + new URLSearchParams(body).toString(), { method }).then((v) => v.json());
+      return fetch(url + "?" + new URLSearchParams(body).toString(), { method })
+        .then((v) => {
+          return v.json();
+        })
+        .then((v) => {
+          if (v.error) {
+            apiOptions.onError(v);
+          }
+          return v;
+        });
     }
-    return fetch(url, { method, body: JSON.stringify(body) }).then((v) => v.json());
+    return fetch(url, { method, body: JSON.stringify(body) })
+      .then((v) => v.json())
+      .then((v) => {
+        if (v.error) {
+          apiOptions.onError(v);
+        }
+        return v;
+      });
   },
+  onError: (error: any) => {},
   baseUrl: "",
 };
 
