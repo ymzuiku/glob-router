@@ -6,7 +6,7 @@ import { formatServes } from "./formatServes";
 async function globRouter(input: string) {
   const [pages, serves] = await Promise.all([
     fg([`${input}/**/+page.(tsx|ts|vue)`]),
-    fg([`${input}/**/+serve.(ts|tsx)`]),
+    fg([`${input}/**/+serve.ts`]),
   ]);
   await Promise.all(
     [

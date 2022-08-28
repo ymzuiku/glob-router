@@ -1,5 +1,5 @@
-var S=Object.create;var g=Object.defineProperty;var A=Object.getOwnPropertyDescriptor;var C=Object.getOwnPropertyNames;var j=Object.getPrototypeOf,F=Object.prototype.hasOwnProperty;var u=e=>g(e,"__esModule",{value:!0});var G=(e,t)=>{for(var r in t)g(e,r,{get:t[r],enumerable:!0})},T=(e,t,r,s)=>{if(t&&typeof t=="object"||typeof t=="function")for(let a of C(t))!F.call(e,a)&&(r||a!=="default")&&g(e,a,{get:()=>t[a],enumerable:!(s=A(t,a))||s.enumerable});return e},m=(e,t)=>T(u(g(e!=null?S(j(e)):{},"default",!t&&e&&e.__esModule?{get:()=>e.default,enumerable:!0}:{value:e,enumerable:!0})),e),L=(e=>(t,r)=>e&&e.get(t)||(r=T(u({}),t,1),e&&e.set(t,r),r))(typeof WeakMap!="undefined"?new WeakMap:0);var N={};G(N,{default:()=>J});var y=m(require("fast-glob"));var P=m(require("fs-extra"));var f=m(require("fs-extra")),E=require("path"),k=(...e)=>(0,E.resolve)(process.cwd(),...e);async function c(e,t,r){let s=k(e,r);if(f.default.existsSync(s)){let a=await f.default.readFile(s);String(a)!=t&&await f.default.writeFile(s,t)}else await f.default.writeFile(s,t)}var D=/export const GET =/,H=/export const POST =/,_=/export const DELETE =/,I=/export const PUT =/,B=/export const PATCH =/;async function O(e,t){let r="",s="";for(let n of t){let i=n.replace(e,"").replace("/+serve.tsx","").replace("/+serve.ts",""),p=n.replace(e,".").replace(".tsx","").replace(".ts",""),o=n.replace(e+"/","").replace("/+serve.tsx","").replace("/+serve.ts","").split("/").join("_");o.indexOf("+serve.")>-1&&(o="_"),s+=`import * as ${o} from "${p}";  
-`;let U=await P.default.readFile(n),l=String(U),v="",h="",d="",x="",$="";D.test(l)&&(v=`
+var S=Object.create;var g=Object.defineProperty;var A=Object.getOwnPropertyDescriptor;var C=Object.getOwnPropertyNames;var j=Object.getPrototypeOf,F=Object.prototype.hasOwnProperty;var x=e=>g(e,"__esModule",{value:!0});var G=(e,t)=>{for(var r in t)g(e,r,{get:t[r],enumerable:!0})},T=(e,t,r,s)=>{if(t&&typeof t=="object"||typeof t=="function")for(let a of C(t))!F.call(e,a)&&(r||a!=="default")&&g(e,a,{get:()=>t[a],enumerable:!(s=A(t,a))||s.enumerable});return e},m=(e,t)=>T(x(g(e!=null?S(j(e)):{},"default",!t&&e&&e.__esModule?{get:()=>e.default,enumerable:!0}:{value:e,enumerable:!0})),e),L=(e=>(t,r)=>e&&e.get(t)||(r=T(x({}),t,1),e&&e.set(t,r),r))(typeof WeakMap!="undefined"?new WeakMap:0);var N={};G(N,{default:()=>J});var y=m(require("fast-glob"));var P=m(require("fs-extra"));var f=m(require("fs-extra")),E=require("path"),k=(...e)=>(0,E.resolve)(process.cwd(),...e);async function c(e,t,r){let s=k(e,r);if(f.default.existsSync(s)){let a=await f.default.readFile(s);String(a)!=t&&await f.default.writeFile(s,t)}else await f.default.writeFile(s,t)}var D=/export const GET =/,H=/export const POST =/,_=/export const DELETE =/,I=/export const PUT =/,B=/export const PATCH =/;async function O(e,t){let r="",s="";for(let n of t){let i=n.replace(e,"").replace("/+serve.tsx","").replace("/+serve.ts",""),p=n.replace(e,".").replace(".tsx","").replace(".ts",""),o=n.replace(e+"/","").replace("/+serve.tsx","").replace("/+serve.ts","").split("/").join("_");o.indexOf("+serve.")>-1&&(o="_"),s+=`import * as ${o} from "${p}";  
+`;let U=await P.default.readFile(n),l=String(U),v="",h="",d="",$="",u="";D.test(l)&&(v=`
     GET: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "GET", args);
     }) as any as typeof ${o}.GET,
@@ -11,17 +11,17 @@ var S=Object.create;var g=Object.defineProperty;var A=Object.getOwnPropertyDescr
     POST: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "POST", args);
     }) as any as typeof ${o}.POST,
-      `),I.test(l)&&(x=`
+      `),I.test(l)&&($=`
     PUT: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "PUT", args);
     }) as any as typeof ${o}.PUT,
-      `),B.test(l)&&($=`
+      `),B.test(l)&&(u=`
     PATCH: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "PATCH", args);
     }) as any as typeof ${o}.PATCH,
       `),r+=`
   ${o}: {
-    ${v}${h}${d}${x}${$}
+    ${v}${h}${d}${$}${u}
   },`}let a=`// Auto create with glob-router
 /* eslint-disable */
 
@@ -107,4 +107,4 @@ Object.keys(serves).forEach((k) => {
   const item = (serves as any)[k];
   serveArray.push(item);
 });
-`;await c(e,a,"serves.ts")}async function R(e){let[t,r]=await Promise.all([(0,y.default)([`${e}/**/+page.(tsx|ts|vue)`]),(0,y.default)([`${e}/**/+serve.(ts|tsx)`])]);await Promise.all([t.length&&b(e,t),r.length&&w(e,r),r.length&&O(e,r)].filter(Boolean)),console.log("loaded glob-router")}var J=R;module.exports=L(N);0&&(module.exports={});
+`;await c(e,a,"serves.ts")}async function R(e){let[t,r]=await Promise.all([(0,y.default)([`${e}/**/+page.(tsx|ts|vue)`]),(0,y.default)([`${e}/**/+serve.ts`])]);await Promise.all([t.length&&b(e,t),r.length&&w(e,r),r.length&&O(e,r)].filter(Boolean)),console.log("loaded glob-router")}var J=R;module.exports=L(N);0&&(module.exports={});
