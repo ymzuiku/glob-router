@@ -81,7 +81,8 @@ export async function formatApis(input: string, files: string[]) {
   },`;
   }
 
-  const out = `// Auto create with glob-router
+  const out = `// Don't edit
+// Auto create with glob-router
 /* eslint-disable */
 
 ${importCodes}
@@ -117,5 +118,5 @@ export const apiOptions = {
 
 export const apis = {${code}
 };`;
-  await saveFile(input, out, "apis.ts");
+  await saveFile(input, out, "_apis.ts");
 }

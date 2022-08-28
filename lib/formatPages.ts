@@ -8,7 +8,11 @@ export async function formatPages(input: string, files: string[]) {
       .replace("/+page.tsx", "")
       .replace("/+page.ts", "")
       .replace("/+page.vue", "");
-    const importUrl = file.replace(input, ".").replace(".tsx", "").replace(".ts", "").replace(".vue", "");
+    const importUrl = file
+      .replace(input, ".")
+      .replace(".tsx", "")
+      .replace(".ts", "")
+      .replace(".vue", "");
     let name = file
       .replace(input + "/", "")
       .replace("/+page.tsx", "")
@@ -27,7 +31,8 @@ export async function formatPages(input: string, files: string[]) {
     render: () => import("${importUrl}"),
   },`;
   }
-  const out = `// Auto create with glob-router
+  const out = `// Don't edit
+// Auto create with glob-router
 /* eslint-disable */
 
 export interface PageItem {
@@ -44,5 +49,5 @@ Object.keys(pages).forEach((k) => {
   pageArray.push(item);
 });
 `;
-  await saveFile(input, out, "pages.ts");
+  await saveFile(input, out, "_pages.ts");
 }

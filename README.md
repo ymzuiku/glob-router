@@ -58,9 +58,9 @@ We can get:
 ```sh
 router/
   /<old dirs>
-  apis.ts
-  serves.ts
-  pages.ts
+  _apis.ts
+  _serves.ts
+  _pages.ts
 ```
 
 ## That's all

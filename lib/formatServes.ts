@@ -5,7 +5,10 @@ export async function formatServes(input: string, files: string[]) {
   let importCodes = "";
   for (const file of files) {
     const pathUrl = file.replace(input, "").replace("/+serve.ts", "");
-    const importUrl = file.replace(input, ".").replace(".tsx", "").replace(".ts", "");
+    const importUrl = file
+      .replace(input, ".")
+      .replace(".tsx", "")
+      .replace(".ts", "");
     let name = file
       .replace(input + "/", "")
       .replace("/+serve.ts", "")
@@ -25,7 +28,8 @@ export async function formatServes(input: string, files: string[]) {
     serve: ${name},
   },`;
   }
-  const out = `// Auto create with glob-router
+  const out = `// Don't edit
+// Auto create with glob-router
 /* eslint-disable */
 
 ${importCodes}
@@ -51,5 +55,5 @@ Object.keys(serves).forEach((k) => {
   serveArray.push(item);
 });
 `;
-  await saveFile(input, out, "serves.ts");
+  await saveFile(input, out, "_serves.ts");
 }

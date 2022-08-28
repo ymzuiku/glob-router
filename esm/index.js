@@ -22,7 +22,8 @@ import x from"fast-glob";import O from"fs-extra";import f from"fs-extra";import{
       `),t+=`
   ${r}: {
     ${g}${m}${y}${v}${h}
-  },`}let n=`// Auto create with glob-router
+  },`}let n=`// Don't edit
+// Auto create with glob-router
 /* eslint-disable */
 
 ${a}
@@ -57,11 +58,12 @@ export const apiOptions = {
 };
 
 export const apis = {${t}
-};`;await c(e,n,"apis.ts")}async function $(e,s){let t="";for(let n of s){let o=n.replace(e,"").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue",""),i=n.replace(e,".").replace(".tsx","").replace(".ts","").replace(".vue",""),p=n.replace(e+"/","").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue","").split("/").join("_");p.indexOf("+page.")>-1&&(p="_"),t+=`
+};`;await c(e,n,"_apis.ts")}async function $(e,s){let t="";for(let n of s){let o=n.replace(e,"").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue",""),i=n.replace(e,".").replace(".tsx","").replace(".ts","").replace(".vue",""),p=n.replace(e+"/","").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue","").split("/").join("_");p.indexOf("+page.")>-1&&(p="_"),t+=`
   ${p}: {
     path: "${o}",
     render: () => import("${i}"),
-  },`}let a=`// Auto create with glob-router
+  },`}let a=`// Don't edit
+// Auto create with glob-router
 /* eslint-disable */
 
 export interface PageItem {
@@ -77,12 +79,13 @@ Object.keys(pages).forEach((k) => {
   const item = (pages as any)[k];
   pageArray.push(item);
 });
-`;await c(e,a,"pages.ts")}async function u(e,s){let t="",a="";for(let o of s){let i=o.replace(e,"").replace("/+serve.ts",""),p=o.replace(e,".").replace(".tsx","").replace(".ts",""),r=o.replace(e+"/","").replace("/+serve.ts","").split("/").join("_");a+=`import * as ${r} from "${p}";  
+`;await c(e,a,"_pages.ts")}async function u(e,s){let t="",a="";for(let o of s){let i=o.replace(e,"").replace("/+serve.ts",""),p=o.replace(e,".").replace(".tsx","").replace(".ts",""),r=o.replace(e+"/","").replace("/+serve.ts","").split("/").join("_");a+=`import * as ${r} from "${p}";  
 `,r.indexOf("+serve.")>-1&&(r="_"),t+=`
   ${r}: {
     path: "${i}",
     serve: ${r},
-  },`}let n=`// Auto create with glob-router
+  },`}let n=`// Don't edit
+// Auto create with glob-router
 /* eslint-disable */
 
 ${a}
@@ -107,4 +110,4 @@ Object.keys(serves).forEach((k) => {
   const item = (serves as any)[k];
   serveArray.push(item);
 });
-`;await c(e,n,"serves.ts")}async function C(e){let[s,t]=await Promise.all([x([`${e}/**/+page.(tsx|ts|vue)`]),x([`${e}/**/+serve.ts`])]);await Promise.all([s.length&&$(e,s),t.length&&u(e,t),t.length&&d(e,t)].filter(Boolean)),console.log("loaded glob-router")}var z=C;export{z as default};
+`;await c(e,n,"_serves.ts")}async function D(e){let[s,t]=await Promise.all([x([`${e}/**/+page.(tsx|ts|vue)`]),x([`${e}/**/+serve.ts`])]);await Promise.all([s.length&&$(e,s),t.length&&u(e,t),t.length&&d(e,t)].filter(Boolean)),console.log("loaded glob-router")}var z=D;export{z as default};
