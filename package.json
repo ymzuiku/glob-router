@@ -1,6 +1,6 @@
 {
   "name": "glob-router",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "lib/index.ts",
   "types": "lib/index.ts",
   "exports": {

@@ -30,7 +30,7 @@ export async function formatApis(input: string, files: string[]) {
       name = "_";
     }
 
-    importCodes += `import * as ${name} from "${importUrl}";  
+    importCodes += `import type * as ${name} from "${importUrl}";  
 `;
     const textBy = await fs.readFile(file);
     const text = String(textBy);
