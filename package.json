@@ -1,6 +1,6 @@
 {
   "name": "glob-router",
-  "version": "0.0.14",
+  "version": "0.1.0",
   "main": "lib/index.ts",
   "types": "lib/index.ts",
   "exports": {
@@ -28,6 +28,7 @@
   },
   "homepage": "git+https://github.com/ymzuiku/glob-router.git",
   "dependencies": {
+    "chokidar": "^3.5.3",
     "fast-glob": "^3.2.11",
     "fs-extra": "^10.1.0"
   }

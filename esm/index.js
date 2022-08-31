@@ -1,32 +1,32 @@
-import x from"fast-glob";import O from"fs-extra";import f from"fs-extra";import{resolve as E}from"path";var P=(...e)=>E(process.cwd(),...e);async function c(e,s,t){let a=P(e,t);if(f.existsSync(a)){let n=await f.readFile(a);String(n)!=s&&await f.writeFile(a,s)}else await f.writeFile(a,s)}var b=/export const GET =/,w=/export const POST =/,U=/export const DELETE =/,S=/export const PUT =/,A=/export const PATCH =/;async function d(e,s){let t="",a="";for(let o of s){let i=o.replace(e,"").replace("/+serve.tsx","").replace("/+serve.ts",""),p=o.replace(e,".").replace(".tsx","").replace(".ts",""),r=o.replace(e+"/","").replace("/+serve.tsx","").replace("/+serve.ts","").split("/").join("_");r.indexOf("+serve.")>-1&&(r="_"),a+=`import type * as ${r} from "${p}";  
-`;let T=await O.readFile(o),l=String(T),g="",m="",y="",v="",h="";b.test(l)&&(g=`
+import{watch as L}from"chokidar";import P from"fast-glob";import b from"fs-extra";import f from"fs-extra";import{resolve as w}from"path";var U=(...e)=>w(process.cwd(),...e);async function c(e,s,t){let o=U(e,t);if(f.existsSync(o)){let n=await f.readFile(o);String(n)!=s&&await f.writeFile(o,s)}else await f.writeFile(o,s)}var S=/(^|\n)(export const GET|export function GET|export async function GET)/,A=/(^|\n)(export const POST|export function POST|export async function POST)/,D=/(^|\n)(export const DELETE|export function DELETE|export async function DELETE)/,C=/(^|\n)(export const PUT|export function PUT|export async function PUT)/,G=/(^|\n)(export const PATCH|export function PATCH|export async function PATCH)/;async function d(e,s){let t="",o="";for(let a of s){let i=a.replace(e,"").replace("/+serve.tsx","").replace("/+serve.ts",""),p=a.replace(e,".").replace(".tsx","").replace(".ts",""),r=a.replace(e+"/","").replace("/+serve.tsx","").replace("/+serve.ts","").split("/").join("_");r.indexOf("+serve.")>-1&&(r="_"),o+=`import type * as ${r} from "${p}";  
+`;let O=await b.readFile(a),l=String(O),y="",u="",h="",v="",x="";S.test(l)&&(y=`
     GET: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "GET", args);
     }) as any as typeof ${r}.GET,
-      `),U.test(l)&&(m=`
+      `),D.test(l)&&(u=`
     DELETE: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "DELETE", args);
     }) as any as typeof ${r}.DELETE,
-      `),w.test(l)&&(y=`
+      `),A.test(l)&&(h=`
     POST: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "POST", args);
     }) as any as typeof ${r}.POST,
-      `),S.test(l)&&(v=`
+      `),C.test(l)&&(v=`
     PUT: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "PUT", args);
     }) as any as typeof ${r}.PUT,
-      `),A.test(l)&&(h=`
+      `),G.test(l)&&(x=`
     PATCH: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "PATCH", args);
     }) as any as typeof ${r}.PATCH,
       `),t+=`
   ${r}: {
-    ${g}${m}${y}${v}${h}
+    ${y}${u}${h}${v}${x}
   },`}let n=`// Don't edit
 // Auto create with glob-router
 /* eslint-disable */
 
-${a}
+${o}
 export const apiOptions = {
   fetcher: (url: string, method: string, body: any) => {
     if (typeof window == "undefined") {
@@ -58,11 +58,11 @@ export const apiOptions = {
 };
 
 export const apis = {${t}
-};`;await c(e,n,"_apis.ts")}async function $(e,s){let t="";for(let n of s){let o=n.replace(e,"").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue",""),i=n.replace(e,".").replace(".tsx","").replace(".ts","").replace(".vue",""),p=n.replace(e+"/","").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue","").split("/").join("_");p.indexOf("+page.")>-1&&(p="_"),t+=`
+};`;await c(e,n,"_apis.ts")}async function T(e,s){let t="";for(let n of s){let a=n.replace(e,"").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue",""),i=n.replace(e,".").replace(".tsx","").replace(".ts","").replace(".vue",""),p=n.replace(e+"/","").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue","").split("/").join("_");p.indexOf("+page.")>-1&&(p="_"),t+=`
   ${p}: {
-    path: "${o}",
+    path: "${a}",
     render: () => import("${i}"),
-  },`}let a=`// Don't edit
+  },`}let o=`// Don't edit
 // Auto create with glob-router
 /* eslint-disable */
 
@@ -79,7 +79,7 @@ Object.keys(pages).forEach((k) => {
   const item = (pages as any)[k];
   pageArray.push(item);
 });
-`;await c(e,a,"_pages.ts")}async function u(e,s){let t="",a="";for(let o of s){let i=o.replace(e,"").replace("/+serve.ts",""),p=o.replace(e,".").replace(".tsx","").replace(".ts",""),r=o.replace(e+"/","").replace("/+serve.ts","").split("/").join("_");a+=`import * as ${r} from "${p}";  
+`;await c(e,o,"_pages.ts")}async function E(e,s){let t="",o="";for(let a of s){let i=a.replace(e,"").replace("/+serve.ts",""),p=a.replace(e,".").replace(".tsx","").replace(".ts",""),r=a.replace(e+"/","").replace("/+serve.ts","").split("/").join("_");o+=`import * as ${r} from "${p}";  
 `,r.indexOf("+serve.")>-1&&(r="_"),t+=`
   ${r}: {
     path: "${i}",
@@ -88,7 +88,7 @@ Object.keys(pages).forEach((k) => {
 // Auto create with glob-router
 /* eslint-disable */
 
-${a}
+${o}
 
 export interface ServeItem {
   path: string;
@@ -110,4 +110,4 @@ Object.keys(serves).forEach((k) => {
   const item = (serves as any)[k];
   serveArray.push(item);
 });
-`;await c(e,n,"_serves.ts")}async function D(e){let[s,t]=await Promise.all([x([`${e}/**/+page.(tsx|ts|vue)`]),x([`${e}/**/+serve.ts`])]);await Promise.all([s.length&&$(e,s),t.length&&u(e,t),t.length&&d(e,t)].filter(Boolean)),console.log("loaded glob-router")}var z=D;export{z as default};
+`;await c(e,n,"_serves.ts")}var g=!1;async function m(e){if(g)return;g=!0;let[s,t]=await Promise.all([P([`${e}/**/+page.(tsx|ts|vue)`]),P([`${e}/**/+serve.ts`])]);await Promise.all([s.length&&T(e,s),t.length&&E(e,t),t.length&&d(e,t)].filter(Boolean)),g=!1}var $=/(\+page|\+serve)/;async function _(e,s=!1){if(m(e),!s){console.log("loaded glob-router");return}L(e,{persistent:!0}).on("add",t=>{$.test(t)&&m(e)}).on("change",t=>{$.test(t)&&m(e)})}var W=_;export{W as default};

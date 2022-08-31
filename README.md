@@ -53,6 +53,25 @@ In your project run:
 glob-router router
 ```
 
+If you need watch:
+
+```sh
+glob-router router -w
+```
+
+If Use webpack / vite:
+
+```js
+import globRouter from "glob-router";
+
+globRouter("./src/routers", true);
+
+export default viteConfig/webpackConfig
+```
+
+
+## Effect
+
 We can get:
 
 ```sh

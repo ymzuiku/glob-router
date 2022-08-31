@@ -2,4 +2,11 @@
 const globRouter = require("./cjs/index").default;
 const argv = process.argv.splice(2);
 
-globRouter(argv[0]);
+let isWatch = false;
+
+for (const key in argv) {
+  if (key == "-w") {
+    isWatch = true;
+  }
+}
+globRouter(argv[0], isWatch);

@@ -1,11 +1,16 @@
 import fs from "fs-extra";
 import saveFile from "./saveFile";
 
-const hasGet = /export const GET =/;
-const hasPOST = /export const POST =/;
-const hasDELETE = /export const DELETE =/;
-const hasPUT = /export const PUT =/;
-const hasPATCH = /export const PATCH =/;
+const hasGet =
+  /(^|\n)(export const GET|export function GET|export async function GET)/;
+const hasPOST =
+  /(^|\n)(export const POST|export function POST|export async function POST)/;
+const hasDELETE =
+  /(^|\n)(export const DELETE|export function DELETE|export async function DELETE)/;
+const hasPUT =
+  /(^|\n)(export const PUT|export function PUT|export async function PUT)/;
+const hasPATCH =
+  /(^|\n)(export const PATCH|export function PATCH|export async function PATCH)/;
 
 export async function formatApis(input: string, files: string[]) {
   let code = "";
