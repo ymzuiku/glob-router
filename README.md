@@ -59,12 +59,15 @@ If you need watch:
 glob-router router -w
 ```
 
-If Use webpack / vite:
+### If Use webpack / vite:
 
 ```js
 import globRouter from "glob-router";
 
-globRouter("./src/routers", true);
+
+const isProd = process.env.NODE_ENV === "production";
+// If not production, use watch
+globRouter("./src/routers", !isProd);
 
 export default viteConfig/webpackConfig
 ```

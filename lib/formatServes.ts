@@ -31,6 +31,8 @@ export async function formatServes(input: string, files: string[]) {
   const out = `// Don't edit
 // Auto create with glob-router
 /* eslint-disable */
+/* tslint:disable */
+/* prettier-ignore */
 
 ${importCodes}
 
