@@ -1,5 +1,5 @@
-import{watch as L}from"chokidar";import P from"fast-glob";import b from"fs-extra";import f from"fs-extra";import{resolve as w}from"path";var U=(...e)=>w(process.cwd(),...e);async function c(e,s,t){let o=U(e,t);if(f.existsSync(o)){let n=await f.readFile(o);String(n)!=s&&await f.writeFile(o,s)}else await f.writeFile(o,s)}var S=/(^|\n)(export const GET|export function GET|export async function GET)/,A=/(^|\n)(export const POST|export function POST|export async function POST)/,D=/(^|\n)(export const DELETE|export function DELETE|export async function DELETE)/,C=/(^|\n)(export const PUT|export function PUT|export async function PUT)/,G=/(^|\n)(export const PATCH|export function PATCH|export async function PATCH)/;async function d(e,s){let t="",o="";for(let a of s){let i=a.replace(e,"").replace("/+serve.tsx","").replace("/+serve.ts",""),p=a.replace(e,".").replace(".tsx","").replace(".ts",""),r=a.replace(e+"/","").replace("/+serve.tsx","").replace("/+serve.ts","").split("/").join("_");r.indexOf("+serve.")>-1&&(r="_"),o+=`import type * as ${r} from "${p}";  
-`;let O=await b.readFile(a),l=String(O),y="",u="",h="",v="",x="";S.test(l)&&(y=`
+import{watch as L}from"chokidar";import P from"fast-glob";import b from"fs-extra";import f from"fs-extra";import{resolve as w}from"path";var U=(...e)=>w(process.cwd(),...e);async function c(e,s,t){let a=U(e,t);if(f.existsSync(a)){let n=await f.readFile(a);String(n)!=s&&await f.writeFile(a,s)}else await f.writeFile(a,s)}var S=/(^|\n)(export const GET|export function GET|export async function GET)/,A=/(^|\n)(export const POST|export function POST|export async function POST)/,D=/(^|\n)(export const DELETE|export function DELETE|export async function DELETE)/,C=/(^|\n)(export const PUT|export function PUT|export async function PUT)/,G=/(^|\n)(export const PATCH|export function PATCH|export async function PATCH)/;async function d(e,s){let t="",a="";for(let o of s){let i=o.replace(e,"").replace("/+serve.tsx","").replace("/+serve.ts",""),p=o.replace(e,".").replace(".tsx","").replace(".ts",""),r=o.replace(e+"/","").replace("/+serve.tsx","").replace("/+serve.ts","").split("/").join("_");r.indexOf("+serve.")>-1&&(r="_"),a+=`import type * as ${r} from "${p}";  
+`;let O=await b.readFile(o),l=String(O),y="",u="",h="",v="",x="";S.test(l)&&(y=`
     GET: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "GET", args);
     }) as any as typeof ${r}.GET,
@@ -26,7 +26,7 @@ import{watch as L}from"chokidar";import P from"fast-glob";import b from"fs-extra
 // Auto create with glob-router
 /* eslint-disable */
 
-${o}
+${a}
 export const apiOptions = {
   fetcher: (url: string, method: string, body: any) => {
     if (typeof window == "undefined") {
@@ -42,6 +42,8 @@ export const apiOptions = {
             apiOptions.onError(v);
           }
           return v;
+        }).catch(err=>{
+          return err;
         });
     }
     return fetch(url, { method, body: JSON.stringify(body) })
@@ -51,6 +53,8 @@ export const apiOptions = {
           apiOptions.onError(v);
         }
         return v;
+      }).catch(err=>{
+        return err;
       });
   },
   onError: (error: any) => {},
@@ -58,11 +62,11 @@ export const apiOptions = {
 };
 
 export const apis = {${t}
-};`;await c(e,n,"_apis.ts")}async function T(e,s){let t="";for(let n of s){let a=n.replace(e,"").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue",""),i=n.replace(e,".").replace(".tsx","").replace(".ts","").replace(".vue",""),p=n.replace(e+"/","").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue","").split("/").join("_");p.indexOf("+page.")>-1&&(p="_"),t+=`
+};`;await c(e,n,"_apis.ts")}async function T(e,s){let t="";for(let n of s){let o=n.replace(e,"").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue",""),i=n.replace(e,".").replace(".tsx","").replace(".ts","").replace(".vue",""),p=n.replace(e+"/","").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue","").split("/").join("_");p.indexOf("+page.")>-1&&(p="_"),t+=`
   ${p}: {
-    path: "${a}",
+    path: "${o}",
     render: () => import("${i}"),
-  },`}let o=`// Don't edit
+  },`}let a=`// Don't edit
 // Auto create with glob-router
 /* eslint-disable */
 
@@ -79,7 +83,7 @@ Object.keys(pages).forEach((k) => {
   const item = (pages as any)[k];
   pageArray.push(item);
 });
-`;await c(e,o,"_pages.ts")}async function E(e,s){let t="",o="";for(let a of s){let i=a.replace(e,"").replace("/+serve.ts",""),p=a.replace(e,".").replace(".tsx","").replace(".ts",""),r=a.replace(e+"/","").replace("/+serve.ts","").split("/").join("_");o+=`import * as ${r} from "${p}";  
+`;await c(e,a,"_pages.ts")}async function E(e,s){let t="",a="";for(let o of s){let i=o.replace(e,"").replace("/+serve.ts",""),p=o.replace(e,".").replace(".tsx","").replace(".ts",""),r=o.replace(e+"/","").replace("/+serve.ts","").split("/").join("_");a+=`import * as ${r} from "${p}";  
 `,r.indexOf("+serve.")>-1&&(r="_"),t+=`
   ${r}: {
     path: "${i}",
@@ -88,7 +92,7 @@ Object.keys(pages).forEach((k) => {
 // Auto create with glob-router
 /* eslint-disable */
 
-${o}
+${a}
 
 export interface ServeItem {
   path: string;

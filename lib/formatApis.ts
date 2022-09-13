@@ -106,6 +106,8 @@ export const apiOptions = {
             apiOptions.onError(v);
           }
           return v;
+        }).catch(err=>{
+          return err;
         });
     }
     return fetch(url, { method, body: JSON.stringify(body) })
@@ -115,6 +117,8 @@ export const apiOptions = {
           apiOptions.onError(v);
         }
         return v;
+      }).catch(err=>{
+        return err;
       });
   },
   onError: (error: any) => {},
