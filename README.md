@@ -1,5 +1,9 @@
 # glob-router
 
+- Zero dependency
+- Any frontend/backend framework
+- Only prebuild
+
 Use glob create client's router map and service's controller, Ignore the any framework
 
 Your product like this:
