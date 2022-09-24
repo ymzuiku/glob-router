@@ -33,7 +33,11 @@ export const apiOptions = {
       return null;
     }
     if (method === "GET") {
-      return fetch(url + "?" + new URLSearchParams(body).toString(), { method })
+      let params = new URLSearchParams(body).toString()
+      if (params) {
+        params = "?" + params
+      }
+      return fetch(url + params, { method })
         .then((v) => {
           return v.json();
         })

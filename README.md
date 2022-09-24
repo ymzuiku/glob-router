@@ -38,6 +38,14 @@ export default () => {
 file `+serve.tsx` is a serve's route:
 
 ```tsx
+/*
+Create - POST
+Read - GET
+Update - PATCH
+Delete - DELETE
+Create or update - PUT
+*/
+
 export const GET = () => {
   // do your service
 };
