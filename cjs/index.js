@@ -1,32 +1,35 @@
-var G=Object.create;var g=Object.defineProperty;var L=Object.getOwnPropertyDescriptor;var _=Object.getOwnPropertyNames;var H=Object.getPrototypeOf,j=Object.prototype.hasOwnProperty;var P=e=>g(e,"__esModule",{value:!0});var F=(e,t)=>{for(var r in t)g(e,r,{get:t[r],enumerable:!0})},$=(e,t,r,s)=>{if(t&&typeof t=="object"||typeof t=="function")for(let a of _(t))!j.call(e,a)&&(r||a!=="default")&&g(e,a,{get:()=>t[a],enumerable:!(s=L(t,a))||s.enumerable});return e},m=(e,t)=>$(P(g(e!=null?G(H(e)):{},"default",!t&&e&&e.__esModule?{get:()=>e.default,enumerable:!0}:{value:e,enumerable:!0})),e),k=(e=>(t,r)=>e&&e.get(t)||(r=$(P({}),t,1),e&&e.set(t,r),r))(typeof WeakMap!="undefined"?new WeakMap:0);var M={};F(M,{default:()=>K});var A=require("chokidar"),y=m(require("fast-glob"));var w=m(require("fs-extra"));var f=m(require("fs-extra")),O=require("path"),I=(...e)=>(0,O.resolve)(process.cwd(),...e);async function c(e,t,r){let s=I(e,r);if(f.default.existsSync(s)){let a=await f.default.readFile(s);String(a)!=t&&await f.default.writeFile(s,t)}else await f.default.writeFile(s,t)}var B=/(^|\n)(export const GET|export function GET|export async function GET)/,R=/(^|\n)(export const POST|export function POST|export async function POST)/,J=/(^|\n)(export const DELETE|export function DELETE|export async function DELETE)/,N=/(^|\n)(export const PUT|export function PUT|export async function PUT)/,q=/(^|\n)(export const PATCH|export function PATCH|export async function PATCH)/;async function U(e,t){let r="",s="";for(let n of t){let i=n.replace(e,"").replace("/+serve.tsx","").replace("/+serve.ts",""),p=n.replace(e,".").replace(".tsx","").replace(".ts",""),o=n.replace(e+"/","").replace("/+serve.tsx","").replace("/+serve.ts","").split("/").join("_");o.indexOf("+serve.")>-1&&(o="_"),s+=`import type * as ${o} from "${p}";  
-`;let C=await w.default.readFile(n),l=String(C),v="",x="",d="",T="",E="";B.test(l)&&(v=`
+var F=Object.create;var m=Object.defineProperty;var k=Object.getOwnPropertyDescriptor;var I=Object.getOwnPropertyNames;var B=Object.getPrototypeOf,N=Object.prototype.hasOwnProperty;var U=e=>m(e,"__esModule",{value:!0});var R=(e,t)=>{for(var r in t)m(e,r,{get:t[r],enumerable:!0})},b=(e,t,r,a)=>{if(t&&typeof t=="object"||typeof t=="function")for(let o of I(t))!N.call(e,o)&&(r||o!=="default")&&m(e,o,{get:()=>t[o],enumerable:!(a=k(t,o))||a.enumerable});return e},h=(e,t)=>b(U(m(e!=null?F(B(e)):{},"default",!t&&e&&e.__esModule?{get:()=>e.default,enumerable:!0}:{value:e,enumerable:!0})),e),J=(e=>(t,r)=>e&&e.get(t)||(r=b(U({}),t,1),e&&e.set(t,r),r))(typeof WeakMap!="undefined"?new WeakMap:0);var Y={};R(Y,{default:()=>X});var L=require("chokidar"),u=h(require("fast-glob"));var S=h(require("fs-extra"));var g=h(require("fs-extra")),w=require("path"),M=(...e)=>(0,w.resolve)(process.cwd(),...e);async function l(e,t,r){let a=M(e,r);if(g.default.existsSync(a)){let o=await g.default.readFile(a);String(o)!=t&&await g.default.writeFile(a,t)}else await g.default.writeFile(a,t)}var q=/(^|\n)(export const GET|export function GET|export async function GET)/,z=/(^|\n)(export const POST|export function POST|export async function POST)/,K=/(^|\n)(export const DELETE|export function DELETE|export async function DELETE)/,Q=/(^|\n)(export const PUT|export function PUT|export async function PUT)/,V=/(^|\n)(export const PATCH|export function PATCH|export async function PATCH)/,A=/(.*)\.(GET|POST|DELETE|PUT|PATCH) =/g;async function D(e,t){let r="",a="";for(let n of t){let i=n.replace(e,"").replace("/+serve.tsx","").replace("/+serve.ts",""),p=n.replace(e,".").replace(".tsx","").replace(".ts",""),s=n.replace(e+"/","").replace("/+serve.tsx","").replace("/+serve.ts","").split("/").join("_");s.indexOf("+serve.")>-1&&(s="_"),a+=`import type * as ${s} from "${p}";  
+`;let _=await S.default.readFile(n),c=String(_),v="",x="",E="",$="",P="";q.test(c)&&(v=`
     GET: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "GET", args);
-    }) as any as typeof ${o}.GET,
-      `),J.test(l)&&(x=`
+    }) as any as typeof ${s}.GET,
+      `),K.test(c)&&(x=`
     DELETE: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "DELETE", args);
-    }) as any as typeof ${o}.DELETE,
-      `),R.test(l)&&(d=`
+    }) as any as typeof ${s}.DELETE,
+      `),z.test(c)&&(E=`
     POST: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "POST", args);
-    }) as any as typeof ${o}.POST,
-      `),N.test(l)&&(T=`
+    }) as any as typeof ${s}.POST,
+      `),Q.test(c)&&($=`
     PUT: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "PUT", args);
-    }) as any as typeof ${o}.PUT,
-      `),q.test(l)&&(E=`
+    }) as any as typeof ${s}.PUT,
+      `),V.test(c)&&(P=`
     PATCH: ((args: any) => {
       return apiOptions.fetcher(apiOptions.baseUrl + "${i}", "PATCH", args);
-    }) as any as typeof ${o}.PATCH,
-      `),r+=`
-  ${o}: {
-    ${v}${x}${d}${T}${E}
-  },`}let a=`// Don't edit
+    }) as any as typeof ${s}.PATCH,
+      `);let O="";A.test(c)&&c.match(A)?.forEach(j=>{let[f,y]=j.split(".");f=f.trim(),y=y.replace("=","").trim(),O+=`${f}: ((args:any)=>{
+			return apiOptions.fetcher(apiOptions.baseUrl + "${i}/${f}", "${y}", args);
+		}) as any as typeof ${s}.${f},
+`}),r+=`
+  ${s}: {
+    ${O}${v}${x}${E}${$}${P}
+  },`}let o=`// Don't edit
 // Auto create with glob-router
 /* eslint-disable */
 
-${s}
+${a}
 export const apiOptions = {
   fetcher: (url: string, method: string, body: any) => {
     if (typeof window == "undefined") {
@@ -50,7 +53,7 @@ export const apiOptions = {
           return err;
         });
     }
-    return fetch(url, { method, body: JSON.stringify(body) })
+    return fetch(url, { method, body: body ? JSON.stringify(body): void 0 })
       .then((v) => v.json())
       .then((v) => {
         if (v.error) {
@@ -66,11 +69,11 @@ export const apiOptions = {
 };
 
 export const apis = {${r}
-};`;await c(e,a,"_apis.ts")}async function b(e,t){let r="";for(let a of t){let n=a.replace(e,"").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue",""),i=a.replace(e,".").replace(".tsx","").replace(".ts","").replace(".vue",""),p=a.replace(e+"/","").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue","").split("/").join("_");p.indexOf("+page.")>-1&&(p="_"),r+=`
+};`;await l(e,o,"_apis.ts")}async function C(e,t){let r="";for(let o of t){let n=o.replace(e,"").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue",""),i=o.replace(e,".").replace(".tsx","").replace(".ts","").replace(".vue",""),p=o.replace(e+"/","").replace("/+page.tsx","").replace("/+page.ts","").replace("/+page.vue","").split("/").join("_");p.indexOf("+page.")>-1&&(p="_"),r+=`
   ${p}: {
     path: "${n}",
     render: () => import("${i}"),
-  },`}let s=`// Don't edit
+  },`}let a=`// Don't edit
 // Auto create with glob-router
 /* eslint-disable */
 
@@ -87,16 +90,16 @@ Object.keys(pages).forEach((k) => {
   const item = (pages as any)[k];
   pageArray.push(item);
 });
-`;await c(e,s,"_pages.ts")}async function S(e,t){let r="",s="";for(let n of t){let i=n.replace(e,"").replace("/+serve.ts",""),p=n.replace(e,".").replace(".tsx","").replace(".ts",""),o=n.replace(e+"/","").replace("/+serve.ts","").split("/").join("_");s+=`import * as ${o} from "${p}";  
-`,o.indexOf("+serve.")>-1&&(o="_"),r+=`
-  ${o}: {
+`;await l(e,a,"_pages.ts")}async function G(e,t){let r="",a="";for(let n of t){let i=n.replace(e,"").replace("/+serve.ts",""),p=n.replace(e,".").replace(".tsx","").replace(".ts",""),s=n.replace(e+"/","").replace("/+serve.ts","").split("/").join("_");a+=`import * as ${s} from "${p}";  
+`,s.indexOf("+serve.")>-1&&(s="_"),r+=`
+  ${s}: {
     path: "${i}",
-    serve: ${o},
-  },`}let a=`// Don't edit
+    serve: ${s},
+  },`}let o=`// Don't edit
 // Auto create with glob-router
 /* eslint-disable */
 
-${s}
+${a}
 
 export interface ServeItem {
   path: string;
@@ -118,4 +121,4 @@ Object.keys(serves).forEach((k) => {
   const item = (serves as any)[k];
   serveArray.push(item);
 });
-`;await c(e,a,"_serves.ts")}var u=!1;async function h(e){if(u)return;u=!0;let[t,r]=await Promise.all([(0,y.default)([`${e}/**/+page.(tsx|ts|vue)`]),(0,y.default)([`${e}/**/+serve.ts`])]);await Promise.all([t.length&&b(e,t),r.length&&S(e,r),r.length&&U(e,r)].filter(Boolean)),u=!1}var D=/(\+page|\+serve)/;async function z(e,t=!1){if(h(e),!t){console.log("loaded glob-router");return}(0,A.watch)(e,{persistent:!0}).on("add",r=>{D.test(r)&&h(e)}).on("change",r=>{D.test(r)&&h(e)})}var K=z;module.exports=k(M);0&&(module.exports={});
+`;await l(e,o,"_serves.ts")}var d=!1;async function T(e){if(d)return;d=!0;let[t,r]=await Promise.all([(0,u.default)([`${e}/**/+page.(tsx|ts|vue)`]),(0,u.default)([`${e}/**/+serve.ts`])]);await Promise.all([t.length&&C(e,t),r.length&&G(e,r),r.length&&D(e,r)].filter(Boolean)),d=!1}var H=/(\+page|\+serve)/;async function W(e,t=!1){if(T(e),!t){console.log("loaded glob-router");return}(0,L.watch)(e,{persistent:!0}).on("add",r=>{H.test(r)&&T(e)}).on("change",r=>{H.test(r)&&T(e)})}var X=W;module.exports=J(Y);0&&(module.exports={});

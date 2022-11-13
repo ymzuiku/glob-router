@@ -37,6 +37,8 @@ export default () => {
 
 file `+serve.tsx` is a serve's route:
 
+Case1, use RESTFull names:
+
 ```tsx
 /*
 Create - POST
@@ -55,6 +57,26 @@ export const POST = () => {
 // export const DELETE ...
 // export const PUT ...
 // export const PATCH ...
+```
+
+Case2, use function name and .(GET|POST|PUT|PATCH|DELETE) url:
+
+```tsx
+export const getTasks = () => {
+  // do your service
+};
+// use .GET, create GET router
+getTasks.GET = true;
+
+export const getTaskDetail = () => {
+  // do your service
+};
+getTaskDetail.GET = true;
+
+export const addTask = () => {
+  // do your service
+};
+addTask.POST = true;
 ```
 
 ## Run glob-router
@@ -76,14 +98,12 @@ glob-router router -w
 ```js
 import globRouter from "glob-router";
 
-
 const isProd = process.env.NODE_ENV === "production";
 // If not production, use watch
 globRouter("./src/routers", !isProd);
 
-export default viteConfig/webpackConfig
+export default viteConfig / webpackConfig;
 ```
-
 
 ## Effect
 

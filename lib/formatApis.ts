@@ -12,6 +12,8 @@ const hasPUT =
 const hasPATCH =
   /(^|\n)(export const PATCH|export function PATCH|export async function PATCH)/;
 
+const hasDotMethod = /(.*)\.(GET|POST|DELETE|PUT|PATCH) =/g;
+
 export async function formatApis(input: string, files: string[]) {
   let code = "";
   let importCodes = "";
@@ -80,9 +82,23 @@ export async function formatApis(input: string, files: string[]) {
       `;
     }
 
+    let methods = "";
+    if (hasDotMethod.test(text)) {
+      const gets = text.match(hasDotMethod);
+      gets?.forEach((line) => {
+        let [fnName, method] = line.split(".");
+        fnName = fnName.trim();
+        method = method.replace("=", "").trim();
+        methods += `${fnName}: ((args:any)=>{
+			return apiOptions.fetcher(apiOptions.baseUrl + "${pathUrl}/${fnName}", "${method}", args);
+		}) as any as typeof ${name}.${fnName},
+`;
+      });
+    }
+
     code += `
   ${name}: {
-    ${get}${del}${post}${put}${patch}
+    ${methods}${get}${del}${post}${put}${patch}
   },`;
   }
 
@@ -114,7 +130,7 @@ export const apiOptions = {
           return err;
         });
     }
-    return fetch(url, { method, body: JSON.stringify(body) })
+    return fetch(url, { method, body: body ? JSON.stringify(body): void 0 })
       .then((v) => v.json())
       .then((v) => {
         if (v.error) {
